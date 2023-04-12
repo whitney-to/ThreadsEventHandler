@@ -16,6 +16,7 @@ public class EventListener extends Thread{
         this.eventTracker = tracker;
     }
 
+    @Override
     public void run() {
         while(readyToQuit()){
             if(shouldReply()){
@@ -32,6 +33,8 @@ public class EventListener extends Thread{
     }
 
     public void reply() {
-        eventTracker.handle(messageToListenFor, () -> {});
+        eventTracker.handle(messageToListenFor, () -> {
+            System.out.println(messageToReplyWith);
+        });
     }
 }
